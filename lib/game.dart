@@ -1,6 +1,5 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
-
-const int _blockNumber = 9;
 
 class GamePage extends StatelessWidget {
   @override
@@ -31,6 +30,9 @@ class GameBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    updateBlockColor(); //設定顏色
+    int num = HighLightBlock();
+    print(num.toString());
     return Container(
       height: 200,
       width: 200,
@@ -42,7 +44,7 @@ class GameBoard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 for (var i = 0; i < BOARD_WIDTH; i++)
-                  _ColorRect(),
+                  _ColorRect(num, (BOARD_HEIGHT * 2 + BOARD_WIDTH))
               ],
             ),
         ],
@@ -52,17 +54,48 @@ class GameBoard extends StatelessWidget {
 }
 
 class _ColorRect extends StatelessWidget {
+  int right = 0;
+  int position = 0;
+
+  _ColorRect(this.right, this.position);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      color: Colors.orange, //顏色要random
-
-      height: 50,
-      minWidth: 50,
-      onPressed: () {
-        //TODO: 按對 加1分 並重新刷新畫面
-        //按錯沒反應
-      },
-    );
+    if (right == position) {
+      return MaterialButton(
+        color: _rightColor, //顏色要random
+        height: 50,
+        minWidth: 50,
+        onPressed: () {
+          //TODO: 按對 加1分 並重新刷新畫面
+        },
+      );
+    } else {
+      return MaterialButton(
+        color: _defaultColor, //顏色要random
+        height: 50,
+        minWidth: 50,
+        onPressed: () {
+          //按錯沒反應
+        },
+      );
+    }
   }
+}
+
+Color _defaultColor;
+Color _rightColor;
+
+Color updateBlockColor() {
+  _defaultColor = MyColor();
+  _rightColor = MyColor();
+}
+
+Color MyColor() {
+  return Color.fromARGB(255, Random().nextInt(256), Random().nextInt(256), Random().nextInt(256));
+}
+
+int HighLightBlock() {
+  int num = Random().nextInt(BOARD_HEIGHT * BOARD_WIDTH);
+  return num;
 }
