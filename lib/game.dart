@@ -1,29 +1,55 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class GamePage extends StatelessWidget {
+class GamePage extends StatefulWidget {
+  @override
+  _GamePageState createState() => _GamePageState();
+}
+
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//      appBar: AppBar(
+//        title: Text('遊戲開始'),
+//      ),
+//      body: _GamePage(),
+//    );
+//  }
+
+class _GamePageState extends State<GamePage> {
+  int _score = 0;
+
+  void _addScore() {
+    setState(() {
+      _score++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('遊戲開始'),
       ),
-      body: _GamePage(),
-    );
-  }
-}
-
-class _GamePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: GameBoard(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+	            'score = $_score',
+	            style: Theme.of(context).textTheme.display1,            ),
+	          GameBoard(),
+          ],
+        ),
+      ),
     );
   }
 }
 
 const int BOARD_HEIGHT = 2;
 const int BOARD_WIDTH = 2;
+Color _defaultColor;
+Color _rightColor;
 
 class GameBoard extends StatelessWidget {
   const GameBoard({Key key}) : super(key: key);
@@ -32,11 +58,7 @@ class GameBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     updateBlockColor(); //設定顏色
     int num = HighLightBlock();
-    print('hello'); //               <-- logging
     return Container(
-      height: 200,
-      width: 200,
-      color: Colors.blue,
       child: Column(
         children: <Widget>[
           for (var j = 0; j < BOARD_HEIGHT; j++)
@@ -83,16 +105,14 @@ class _ColorRect extends StatelessWidget {
   }
 }
 
-Color _defaultColor;
-Color _rightColor;
-
 void updateBlockColor() {
   _defaultColor = MyColor();
   _rightColor = MyColor();
 }
 
 Color MyColor() {
-  return Color.fromARGB(255, Random().nextInt(256), Random().nextInt(256), Random().nextInt(256));
+  return Color.fromARGB(
+      255, Random().nextInt(256), Random().nextInt(256), Random().nextInt(256));
 }
 
 int HighLightBlock() {
