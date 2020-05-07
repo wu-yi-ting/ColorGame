@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const int _blockNumber = 9;
+
 class GamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,49 +18,47 @@ class _GamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: _createGridView(),
-
-//      child: RaisedButton(
-//        child: Text('返回首頁'),
-//        onPressed: () {
-//          Navigator.pop(context);
-//        },
-//      ),
+      child: GameBoard(),
     );
   }
 }
 
-Widget _createGridView() {
-  return GridView.builder(
-    itemCount: 4,
-    //TODO:動態調整
-    shrinkWrap: true,
-    padding: EdgeInsets.all(10),
-    // padding
-    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2, // 每一行的个数
-      mainAxisSpacing: 10, // 间距
-      crossAxisSpacing: 10,
-    ),
-    itemBuilder: (context, index) {
-      return Container(
-        alignment: Alignment.center,
-        child: AspectRatio(
-            aspectRatio: 1, // 宽高比
-            child: _ColorRect()),
-      );
-    },
-  );
+const int BOARD_HEIGHT = 2;
+const int BOARD_WIDTH = 2;
+
+class GameBoard extends StatelessWidget {
+  const GameBoard({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      width: 200,
+      color: Colors.blue,
+      child: Column(
+        children: <Widget>[
+          for (var j = 0; j < BOARD_HEIGHT; j++)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                for (var i = 0; i < BOARD_WIDTH; i++)
+                  _ColorRect(),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
 }
 
 class _ColorRect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return MaterialButton(
       color: Colors.orange, //顏色要random
-      child: AspectRatio(
-        aspectRatio: 1 / 1,
-      ),
+
+      height: 50,
+      minWidth: 50,
       onPressed: () {
         //TODO: 按對 加1分 並重新刷新畫面
         //按錯沒反應

@@ -167,10 +167,10 @@
       "name": "bellatest",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.1"
+      "languageVersion": "2.6"
     }
   ],
-  "generated": "2020-05-07T09:28:34.473477Z",
+  "generated": "2020-05-07T12:01:18.051584Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.17.0.flutter-1402e8e1a4"
 }
