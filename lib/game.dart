@@ -32,7 +32,7 @@ class GameBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     updateBlockColor(); //設定顏色
     int num = HighLightBlock();
-    print(num.toString());
+    print('hello'); //               <-- logging
     return Container(
       height: 200,
       width: 200,
@@ -44,7 +44,7 @@ class GameBoard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 for (var i = 0; i < BOARD_WIDTH; i++)
-                  _ColorRect(num, (BOARD_HEIGHT * 2 + BOARD_WIDTH))
+                  _ColorRect(num, (j * 2 + i))
               ],
             ),
         ],
@@ -86,7 +86,7 @@ class _ColorRect extends StatelessWidget {
 Color _defaultColor;
 Color _rightColor;
 
-Color updateBlockColor() {
+void updateBlockColor() {
   _defaultColor = MyColor();
   _rightColor = MyColor();
 }
