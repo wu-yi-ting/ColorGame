@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               "Color Game",
-              style: TextStyle(color: Color(0xff7d5a5a), fontSize: 80),
+              style: TextStyle(color: Color(0xff7d5a5a), fontSize: 70),
             ),
             Padding(
               padding: const EdgeInsets.all(20),
