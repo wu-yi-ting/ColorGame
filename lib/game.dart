@@ -97,23 +97,29 @@ class ColorRect extends StatelessWidget {
   Widget build(BuildContext context) {
     final game = Provider.of<GameChangeNotifier>(context, listen: false);
     return game.target == position
-        ? MaterialButton(
-            color: game.rightColor, //顏色要random
-            height: 50,
-            minWidth: 50,
-            onPressed: () {
-              // 按對 加1分 並重新刷新畫面
-              game.addScore(1);
-              game.updateBlockColor();
-            },
+        ? Container(
+            padding: EdgeInsets.all(2),
+            child: MaterialButton(
+              color: game.rightColor, //顏色要random
+              height: 50,
+              minWidth: 50,
+              onPressed: () {
+                // 按對 加1分 並重新刷新畫面
+                game.addScore(1);
+                game.updateBlockColor();
+              },
+            ),
           )
-        : MaterialButton(
-            color: game.defaultColor, //顏色要random
-            height: 50,
-            minWidth: 50,
-            onPressed: () {
-              //按錯沒反應
-            },
+        : Container(
+            padding: EdgeInsets.all(2),
+            child: MaterialButton(
+              color: game.defaultColor, //顏色要random
+              height: 50,
+              minWidth: 50,
+              onPressed: () {
+                //按錯沒反應
+              },
+            ),
           );
   }
 }
