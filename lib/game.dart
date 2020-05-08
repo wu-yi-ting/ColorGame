@@ -17,51 +17,60 @@ class _GamePageState extends State<GamePage> {
         title: Text('遊戲開始'),
         automaticallyImplyLeading: false,
       ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Countdown(
-                duration: Duration(seconds: 60),
-                onFinish: () {
-                  Navigator.pushNamed(context, '/Third');
-                },
-                builder: (BuildContext ctx, Duration remaining) {
-                  return Text('${remaining.inMinutes}:${remaining.inSeconds}');
-                },
-              ),
-              Text(
-                  'level=${Provider.of<GameChangeNotifier>(context).gameLevel}'),
-              Text(
-                'score = ${Provider.of<GameChangeNotifier>(context).score}',
-                style: TextStyle(fontSize: 20, color: Colors.black45),
-              ),
-              Spacer(flex: 1),
-              SizedBox(
-                  width: min(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
-                  height: min(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height),
-                  child: FittedBox(child: GameBoard())),
-              Spacer(flex: 1),
-              MaterialButton(
-                textTheme: ButtonTextTheme.normal,
-                onPressed: () {
-                  Navigator.pushNamed(context, '/Third');
-                },
-                child: Text(
-                  "結束",
-                  style: TextStyle(fontSize: 20),
+      body: SizedBox(
+        height: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
+        width: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: SizedBox(
+                width: 250,
+                height: 250,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Countdown(
+                      duration: Duration(seconds: 60),
+                      onFinish: () {
+                        Navigator.pushNamed(context, '/Third');
+                      },
+                      builder: (BuildContext ctx, Duration remaining) {
+                        return Text(
+                            '${remaining.inMinutes}:${remaining.inSeconds}');
+                      },
+                    ),
+                    Text(
+                        'level=${Provider.of<GameChangeNotifier>(context).gameLevel}'),
+                    Text(
+                      'score = ${Provider.of<GameChangeNotifier>(context).score}',
+                      style: TextStyle(fontSize: 20, color: Colors.black45),
+                    ),
+                    SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: FittedBox(child: GameBoard())),
+                    MaterialButton(
+                      textTheme: ButtonTextTheme.normal,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/Third');
+                      },
+                      child: Text(
+                        "結束",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      color: Colors.orange,
+                      disabledTextColor: Colors.white,
+                      textColor: Colors.white,
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                  ],
                 ),
-                color: Colors.orange,
-                disabledTextColor: Colors.white,
-                textColor: Colors.white,
-                padding: EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
               ),
-              Spacer(flex: 1),
-            ],
+            ),
           ),
         ),
       ),
