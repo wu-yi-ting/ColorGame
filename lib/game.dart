@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:countdown_flutter/countdown_flutter.dart';
-
+import 'dart:math';
 import 'logicholder.dart';
 
 class GamePage extends StatefulWidget {
@@ -40,7 +40,8 @@ class _GamePageState extends State<GamePage> {
               ),
               Spacer(flex: 1),
               SizedBox(
-                  width: MediaQuery.of(context).size.width,
+                  width: min(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
+                  height: min(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height),
                   child: FittedBox(child: GameBoard())),
               Spacer(flex: 1),
               MaterialButton(
@@ -102,28 +103,28 @@ class ColorRect extends StatelessWidget {
     final game = Provider.of<GameChangeNotifier>(context, listen: false);
     return (game.target_i == pos_i && game.target_j == pos_j)
         ? Container(
-      padding: EdgeInsets.all(2),
-      child: MaterialButton(
-        color: game.rightColor, //顏色要random
-        height: 50,
-        minWidth: 50,
-        onPressed: () {
-          // 按對 加1分 並重新刷新畫面
-          game.addScore(1);
-          game.updateBlockColor();
-        },
-      ),
-    )
+            padding: EdgeInsets.all(2),
+            child: MaterialButton(
+              color: game.rightColor, //顏色要random
+              height: 50,
+              minWidth: 50,
+              onPressed: () {
+                // 按對 加1分 並重新刷新畫面
+                game.addScore(1);
+                game.updateBlockColor();
+              },
+            ),
+          )
         : Container(
-      padding: EdgeInsets.all(2),
-      child: MaterialButton(
-        color: game.defaultColor, //顏色要random
-        height: 50,
-        minWidth: 50,
-        onPressed: () {
-          //按錯沒反應
-        },
-      ),
-    );
+            padding: EdgeInsets.all(2),
+            child: MaterialButton(
+              color: game.defaultColor, //顏色要random
+              height: 50,
+              minWidth: 50,
+              onPressed: () {
+                //按錯沒反應
+              },
+            ),
+          );
   }
 }

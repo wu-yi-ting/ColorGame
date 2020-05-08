@@ -24,7 +24,6 @@ class _ResultPageState extends State<ResultPage> {
 class ResultLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final game = Provider.of<GameChangeNotifier>(context);
     return Container(
       child: Column(children: <Widget>[
         Text('score=${Provider.of<GameChangeNotifier>(context).score}'),
