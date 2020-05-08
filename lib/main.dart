@@ -1,5 +1,8 @@
-import 'game.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'game.dart';
+import 'logicholder.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,17 +11,22 @@ class MyApp extends StatelessWidget {
   var debugPrint = (String message, {int wrapWidth}) {};
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/First', //1
-      routes: {
-        '/First': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
-        "/Second": (context) => GamePage()
-      },
+    return Builder(
+      builder: (_) => ChangeNotifierProvider<GameChangeNotifier>(
+        create: (_) => GameChangeNotifier(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          initialRoute: '/First', //1
+          routes: {
+            '/First': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+            "/Second": (context) => GamePage()
+          },
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
+        ),
+      ),
     );
   }
 }

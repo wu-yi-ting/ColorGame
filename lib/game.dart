@@ -1,5 +1,7 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'logicholder.dart';
 
 class GamePage extends StatefulWidget {
   @override
@@ -17,14 +19,6 @@ class GamePage extends StatefulWidget {
 //  }
 
 class _GamePageState extends State<GamePage> {
-  int _score = 0;
-
-  void _addScore() {
-    setState(() {
-      _score++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +30,10 @@ class _GamePageState extends State<GamePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-	            'score = $_score',
-	            style: Theme.of(context).textTheme.display1,            ),
-	          GameBoard(),
+              'score = ${Provider.of<GameChangeNotifier>(context).score}',
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            GameBoard(),
           ],
         ),
       ),
@@ -46,27 +41,21 @@ class _GamePageState extends State<GamePage> {
   }
 }
 
-const int BOARD_HEIGHT = 2;
-const int BOARD_WIDTH = 2;
-Color _defaultColor;
-Color _rightColor;
-
 class GameBoard extends StatelessWidget {
   const GameBoard({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    updateBlockColor(); //設定顏色
-    int num = HighLightBlock();
+    final game = Provider.of<GameChangeNotifier>(context);
     return Container(
       child: Column(
         children: <Widget>[
-          for (var j = 0; j < BOARD_HEIGHT; j++)
+          for (var j = 0; j < game.boardSize; j++)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                for (var i = 0; i < BOARD_WIDTH; i++)
-                  _ColorRect(num, (j * 2 + i))
+                for (var i = 0; i < game.boardSize; i++)
+                  ColorRect(position: j * 2 + i)
               ],
             ),
         ],
@@ -75,47 +64,32 @@ class GameBoard extends StatelessWidget {
   }
 }
 
-class _ColorRect extends StatelessWidget {
-  int right = 0;
-  int position = 0;
+class ColorRect extends StatelessWidget {
+  ColorRect({this.position = 0});
 
-  _ColorRect(this.right, this.position);
+  final int position;
 
   @override
   Widget build(BuildContext context) {
-    if (right == position) {
-      return MaterialButton(
-        color: _rightColor, //顏色要random
-        height: 50,
-        minWidth: 50,
-        onPressed: () {
-          //TODO: 按對 加1分 並重新刷新畫面
-        },
-      );
-    } else {
-      return MaterialButton(
-        color: _defaultColor, //顏色要random
-        height: 50,
-        minWidth: 50,
-        onPressed: () {
-          //按錯沒反應
-        },
-      );
-    }
+    final game = Provider.of<GameChangeNotifier>(context, listen: false);
+    return game.target == position
+        ? MaterialButton(
+            color: game.rightColor, //顏色要random
+            height: 50,
+            minWidth: 50,
+            onPressed: () {
+              // 按對 加1分 並重新刷新畫面
+              game.addScore(1);
+              game.updateBlockColor();
+            },
+          )
+        : MaterialButton(
+            color: game.defaultColor, //顏色要random
+            height: 50,
+            minWidth: 50,
+            onPressed: () {
+              //按錯沒反應
+            },
+          );
   }
-}
-
-void updateBlockColor() {
-  _defaultColor = MyColor();
-  _rightColor = MyColor();
-}
-
-Color MyColor() {
-  return Color.fromARGB(
-      255, Random().nextInt(256), Random().nextInt(256), Random().nextInt(256));
-}
-
-int HighLightBlock() {
-  int num = Random().nextInt(BOARD_HEIGHT * BOARD_WIDTH);
-  return num;
 }
