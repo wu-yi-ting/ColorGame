@@ -25,26 +25,28 @@ class ResultLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(children: <Widget>[
-        Text('score=${Provider.of<GameChangeNotifier>(context).score}'),
-        MaterialButton(
-          textTheme: ButtonTextTheme.normal,
-          onPressed: () {
-            Navigator.pushNamed(context, '/First');
-            Provider.of<GameChangeNotifier>(context).resetAllValue();
-          },
-          child: Text(
-            "回首頁",
-            style: TextStyle(fontSize: 20),
-          ),
-          color: Colors.orange,
-          disabledTextColor: Colors.white,
-          textColor: Colors.white,
-          padding: EdgeInsets.all(10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        ),
-      ]),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('score=${Provider.of<GameChangeNotifier>(context).score}'),
+            MaterialButton(
+              textTheme: ButtonTextTheme.normal,
+              onPressed: () {
+                Navigator.pushNamed(context, '/First');
+                Provider.of<GameChangeNotifier>(context).resetAllValue();
+              },
+              child: Text(
+                "回首頁",
+                style: TextStyle(fontSize: 20),
+              ),
+              color: Colors.orange,
+              disabledTextColor: Colors.white,
+              textColor: Colors.white,
+              padding: EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+            ),
+          ]),
     );
   }
 }
