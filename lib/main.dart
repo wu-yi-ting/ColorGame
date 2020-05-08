@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:math';
 
 import 'game.dart';
 import 'logicholder.dart';
@@ -10,6 +11,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   var debugPrint = (String message, {int wrapWidth}) {};
+
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -43,62 +45,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        automaticallyImplyLeading: false,
-      ),
+      backgroundColor: Color(0xfff1d1d1),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '顏色小遊戲',
-              style: TextStyle(fontSize: 40),
+              "Color Game",
+              style: TextStyle(color: Color(0xff7d5a5a), fontSize: 80),
             ),
-            Text(
-              '選擇所有色塊顏色不同是哪個!!!',
-              style: TextStyle(fontSize: 20),
-            ),
-            MaterialButton(
-              textTheme: ButtonTextTheme.normal,
-              onPressed: () {
-                Navigator.pushNamed(context, '/Second');
-              },
-              child: Text(
-                "快開始吧",
-                style: TextStyle(fontSize: 20),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: MaterialButton(
+                textTheme: ButtonTextTheme.normal,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/Second');
+                },
+                child: Text(
+                  "開始吧",
+                  style: TextStyle(fontSize: 20),
+                ),
+                color: Color(0xff7d5a5a),
+                disabledTextColor: Colors.white,
+                textColor: Colors.white,
+                padding: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
               ),
-              color: Colors.orange,
-              disabledTextColor: Colors.white,
-              textColor: Colors.white,
-              padding: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
             ),
           ],
         ),

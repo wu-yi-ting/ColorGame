@@ -13,14 +13,13 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('遊戲開始'),
-        automaticallyImplyLeading: false,
-      ),
+      backgroundColor: Color(0xfff1d1d1),
       body: Center(
         child: SizedBox(
-          height: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
-          width: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
+          height: min(MediaQuery.of(context).size.height,
+              MediaQuery.of(context).size.width),
+          width: min(MediaQuery.of(context).size.height,
+              MediaQuery.of(context).size.width),
           child: FittedBox(
             fit: BoxFit.fill,
             child: Container(
@@ -39,33 +38,42 @@ class _GamePageState extends State<GamePage> {
                         },
                         builder: (BuildContext ctx, Duration remaining) {
                           return Text(
-                              '${remaining.inMinutes}:${remaining.inSeconds}');
+                            '${remaining.inMinutes}:${remaining.inSeconds}',
+                            style: TextStyle(
+                                color: Color(0xff7d5a5a), fontSize: 20),
+                          );
                         },
                       ),
                       Text(
-                          'level=${Provider.of<GameChangeNotifier>(context).gameLevel}'),
+                        'level=${Provider.of<GameChangeNotifier>(context).gameLevel}',
+                        style:
+                            TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
+                      ),
                       Text(
                         'score = ${Provider.of<GameChangeNotifier>(context).score}',
-                        style: TextStyle(fontSize: 20, color: Colors.black45),
+                        style:
+                            TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
                       ),
-                      Expanded(
-                          child: FittedBox(child: GameBoard())),
-                      MaterialButton(
-                        textTheme: ButtonTextTheme.normal,
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/Third');
-                        },
-                        child: Text(
-                          "結束",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        color: Colors.orange,
-                        disabledTextColor: Colors.white,
-                        textColor: Colors.white,
-                        padding: EdgeInsets.all(10),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
+                      Expanded(child: FittedBox(child: GameBoard())),
+//                      Padding(
+//                        padding: const EdgeInsets.all(20),
+//                        child: MaterialButton(
+//                          textTheme: ButtonTextTheme.normal,
+//                          onPressed: () {
+//                            Navigator.pushNamed(context, '/Third');
+//                          },
+//                          child: Text(
+//                            "結束",
+//                            style: TextStyle(fontSize: 20),
+//                          ),
+//                          color: Color(0xff7d5a5a),
+//                          disabledTextColor: Colors.white,
+//                          textColor: Colors.white,
+//                          padding: EdgeInsets.all(10),
+//                          shape: RoundedRectangleBorder(
+//                              borderRadius: BorderRadius.circular(20)),
+//                        ),
+//                      ),
                     ],
                   ),
                 ),
