@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'game.dart';
 import 'logicholder.dart';
+import 'result.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
           initialRoute: '/First', //1
           routes: {
             '/First': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
-            "/Second": (context) => GamePage()
+            "/Second": (context) => GamePage(),
+            "/Thrid": (context) => ResultPage()
           },
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
         ),
