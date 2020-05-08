@@ -16,47 +16,49 @@ class _GamePageState extends State<GamePage> {
       appBar: AppBar(
         title: Text('遊戲開始'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Countdown(
-              duration: Duration(seconds: 60),
-              onFinish: () {
-                Navigator.pushNamed(context, '/Third');
-              },
-              builder: (BuildContext ctx, Duration remaining) {
-                return Text('${remaining.inMinutes}:${remaining.inSeconds}');
-              },
-            ),
-            Text(
-              'score = ${Provider.of<GameChangeNotifier>(context).score}',
-              style: TextStyle(
-                fontSize: 50,
-                color: Colors.black45
+      body: Container(
+        padding: EdgeInsets.all(10),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Countdown(
+                duration: Duration(seconds: 60),
+                onFinish: () {
+                  Navigator.pushNamed(context, '/Third');
+                },
+                builder: (BuildContext ctx, Duration remaining) {
+                  return Text('${remaining.inMinutes}:${remaining.inSeconds}');
+                },
               ),
-            ),
-            Spacer(flex: 1),
-            GameBoard(),
-            Spacer(flex: 1),
-            MaterialButton(
-              textTheme: ButtonTextTheme.normal,
-              onPressed: () {
-                Navigator.pushNamed(context, '/Third');
-              },
-              child: Text(
-                "結束",
-                style: TextStyle(fontSize: 20),
+              Text(
+                'score = ${Provider.of<GameChangeNotifier>(context).score}',
+                style: TextStyle(fontSize: 20, color: Colors.black45),
               ),
-              color: Colors.orange,
-              disabledTextColor: Colors.white,
-              textColor: Colors.white,
-              padding: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-            ),
-            Spacer(flex: 1),
-          ],
+              Spacer(flex: 1),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: FittedBox(child: GameBoard())),
+              Spacer(flex: 1),
+              MaterialButton(
+                textTheme: ButtonTextTheme.normal,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/Third');
+                },
+                child: Text(
+                  "結束",
+                  style: TextStyle(fontSize: 20),
+                ),
+                color: Colors.orange,
+                disabledTextColor: Colors.white,
+                textColor: Colors.white,
+                padding: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+              ),
+              Spacer(flex: 1),
+            ],
+          ),
         ),
       ),
     );
