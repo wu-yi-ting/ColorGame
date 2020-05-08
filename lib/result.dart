@@ -12,6 +12,7 @@ class _ResultPageState extends State<ResultPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('遊戲結束'),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: ResultLayout(),

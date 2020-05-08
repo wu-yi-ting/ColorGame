@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           ),
           initialRoute: '/First', //1
           routes: {
-            '/First': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+            '/First': (context) => MyHomePage(title: 'Bella Demo'),
             "/Second": (context) => GamePage(),
             "/Third": (context) => ResultPage()
           },
@@ -66,9 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it

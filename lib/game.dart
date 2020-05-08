@@ -15,6 +15,7 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('遊戲開始'),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         padding: EdgeInsets.all(10),
