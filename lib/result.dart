@@ -31,6 +31,7 @@ class ResultLayout extends StatelessWidget {
           textTheme: ButtonTextTheme.normal,
           onPressed: () {
             Navigator.pushNamed(context, '/First');
+            Provider.of<GameChangeNotifier>(context).resetAllValue();
           },
           child: Text(
             "回首頁",

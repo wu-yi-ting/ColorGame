@@ -23,6 +23,14 @@ class GameChangeNotifier with ChangeNotifier {
   Color _rightColor;
   int _level = 0;
 
+  void resetAllValue() {
+    _score = 0;
+    _boardSize = 2;
+    _target_i = 0;
+    _target_j = 0;
+    _level = 0;
+  }
+
   int get score {
     return _score;
   }
