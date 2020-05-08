@@ -33,7 +33,26 @@ class _GamePageState extends State<GamePage> {
               'score = ${Provider.of<GameChangeNotifier>(context).score}',
               style: Theme.of(context).textTheme.headline1,
             ),
+            Spacer(flex: 1),
             GameBoard(),
+            Spacer(flex: 1),
+            MaterialButton(
+              textTheme: ButtonTextTheme.normal,
+              onPressed: () {
+                Navigator.pushNamed(context, '/Third');
+              },
+              child: Text(
+                "結束",
+                style: TextStyle(fontSize: 20),
+              ),
+              color: Colors.orange,
+              disabledTextColor: Colors.white,
+              textColor: Colors.white,
+              padding: EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+            ),
+            Spacer(flex: 1),
           ],
         ),
       ),

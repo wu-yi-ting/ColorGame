@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/First': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
             "/Second": (context) => GamePage(),
-            "/Thrid": (context) => ResultPage()
+            "/Third": (context) => ResultPage()
           },
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
         ),
