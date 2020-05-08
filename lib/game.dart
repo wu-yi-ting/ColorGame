@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:countdown_flutter/countdown_flutter.dart';
 
 import 'logicholder.dart';
 
@@ -7,16 +8,6 @@ class GamePage extends StatefulWidget {
   @override
   _GamePageState createState() => _GamePageState();
 }
-
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//      appBar: AppBar(
-//        title: Text('遊戲開始'),
-//      ),
-//      body: _GamePage(),
-//    );
-//  }
 
 class _GamePageState extends State<GamePage> {
   @override
@@ -29,9 +20,21 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Countdown(
+              duration: Duration(seconds: 60),
+              onFinish: () {
+                Navigator.pushNamed(context, '/Third');
+              },
+              builder: (BuildContext ctx, Duration remaining) {
+                return Text('${remaining.inMinutes}:${remaining.inSeconds}');
+              },
+            ),
             Text(
               'score = ${Provider.of<GameChangeNotifier>(context).score}',
-              style: Theme.of(context).textTheme.headline1,
+              style: TextStyle(
+                fontSize: 50,
+                color: Colors.black45
+              ),
             ),
             Spacer(flex: 1),
             GameBoard(),
