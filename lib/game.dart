@@ -32,9 +32,7 @@ class _GamePageState extends State<GamePage> {
                 },
               ),
               Text(
-                'level=${Provider.of<GameChangeNotifier>(context).gameLevel}'
-              )
-              ,
+                  'level=${Provider.of<GameChangeNotifier>(context).gameLevel}'),
               Text(
                 'score = ${Provider.of<GameChangeNotifier>(context).score}',
                 style: TextStyle(fontSize: 20, color: Colors.black45),
@@ -83,7 +81,7 @@ class GameBoard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 for (var i = 0; i < game.boardSize; i++)
-                  ColorRect(position: j * 2 + i)
+                  ColorRect(pos_i: j, pos_j: i)
               ],
             ),
         ],
@@ -93,14 +91,15 @@ class GameBoard extends StatelessWidget {
 }
 
 class ColorRect extends StatelessWidget {
-  ColorRect({this.position = 0});
+  ColorRect({this.pos_i = 0, this.pos_j = 0});
 
-  final int position;
+  final int pos_i;
+  final int pos_j;
 
   @override
   Widget build(BuildContext context) {
     final game = Provider.of<GameChangeNotifier>(context, listen: false);
-    return game.target == position
+    return (game.target_i == pos_i && game.target_j == pos_j)
         ? Container(
             padding: EdgeInsets.all(2),
             child: MaterialButton(

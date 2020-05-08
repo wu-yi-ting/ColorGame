@@ -10,16 +10,18 @@ class GameChangeNotifier with ChangeNotifier {
         _boardSize = max(2, boardSize ?? 2) {
     _defaultColor = _myColor();
     _rightColor = _myColor();
-    _target = _resetTarget();
+    _target_i = _resetTarget();
+    _target_j = _resetTarget();
     _level = _restLevel();
   }
 
-  int _score;
-  int _boardSize;
-  int _target;
+  int _score = 0;
+  int _boardSize = 2;
+  int _target_i = 0;
+  int _target_j = 0;
   Color _defaultColor;
   Color _rightColor;
-  int _level;
+  int _level = 0;
 
   int get score {
     return _score;
@@ -32,8 +34,12 @@ class GameChangeNotifier with ChangeNotifier {
     return _boardSize + _level;
   }
 
-  int get target {
-    return _target;
+  int get target_i {
+    return _target_i;
+  }
+
+  int get target_j {
+    return _target_j;
   }
 
   Color get rightColor {
@@ -51,7 +57,8 @@ class GameChangeNotifier with ChangeNotifier {
   void updateBlockColor() {
     _defaultColor = _myColor();
     _rightColor = _myColor();
-    _target = _resetTarget();
+    _target_i = _resetTarget();
+    _target_j = _resetTarget();
     _level = _restLevel();
 
     notifyListeners();
@@ -68,7 +75,7 @@ class GameChangeNotifier with ChangeNotifier {
   }
 
   int _resetTarget() {
-    return Random().nextInt(_boardSize * _boardSize);
+    return Random().nextInt(boardSize);
   }
 
   int _restLevel() {
