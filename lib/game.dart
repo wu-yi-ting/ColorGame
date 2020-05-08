@@ -32,6 +32,10 @@ class _GamePageState extends State<GamePage> {
                 },
               ),
               Text(
+                'level=${Provider.of<GameChangeNotifier>(context).gameLevel}'
+              )
+              ,
+              Text(
                 'score = ${Provider.of<GameChangeNotifier>(context).score}',
                 style: TextStyle(fontSize: 20, color: Colors.black45),
               ),
