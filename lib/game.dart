@@ -22,7 +22,7 @@ class _GamePageState extends State<GamePage> {
           height: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
           width: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
           child: FittedBox(
-            fit: BoxFit.contain,
+            fit: BoxFit.fill,
             child: Container(
               padding: EdgeInsets.all(10),
               child: Center(
@@ -48,9 +48,7 @@ class _GamePageState extends State<GamePage> {
                         'score = ${Provider.of<GameChangeNotifier>(context).score}',
                         style: TextStyle(fontSize: 20, color: Colors.black45),
                       ),
-                      SizedBox(
-                          width: 100,
-                          height: 100,
+                      Expanded(
                           child: FittedBox(child: GameBoard())),
                       MaterialButton(
                         textTheme: ButtonTextTheme.normal,
