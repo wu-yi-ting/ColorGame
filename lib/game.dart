@@ -19,8 +19,14 @@ class _GamePageState extends State<GamePage> {
       ),
       body: Center(
         child: SizedBox(
-          height: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
-          width: min(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
+          height: min(
+            MediaQuery.of(context).size.height,
+            MediaQuery.of(context).size.width,
+          ),
+          width: min(
+            MediaQuery.of(context).size.height,
+            MediaQuery.of(context).size.width,
+          ),
           child: FittedBox(
             fit: BoxFit.fill,
             child: Container(
@@ -49,7 +55,8 @@ class _GamePageState extends State<GamePage> {
                         style: TextStyle(fontSize: 20, color: Colors.black45),
                       ),
                       Expanded(
-                          child: FittedBox(child: GameBoard())),
+                        child: FittedBox(child: GameBoard()),
+                      ),
                       MaterialButton(
                         textTheme: ButtonTextTheme.normal,
                         onPressed: () {
@@ -92,7 +99,7 @@ class GameBoard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 for (var i = 0; i < game.boardSize; i++)
-                  ColorRect(pos_i: j, pos_j: i)
+                  ColorRect(position: Coordinate(i, j))
               ],
             ),
         ],
@@ -102,15 +109,14 @@ class GameBoard extends StatelessWidget {
 }
 
 class ColorRect extends StatelessWidget {
-  ColorRect({this.pos_i = 0, this.pos_j = 0});
+  ColorRect({@required this.position}) : assert(position != null);
 
-  final int pos_i;
-  final int pos_j;
+  final Coordinate position;
 
   @override
   Widget build(BuildContext context) {
     final game = Provider.of<GameChangeNotifier>(context, listen: false);
-    return (game.target_i == pos_i && game.target_j == pos_j)
+    return (game.target == position)
         ? Container(
             padding: EdgeInsets.all(2),
             child: MaterialButton(
