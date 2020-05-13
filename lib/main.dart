@@ -2,7 +2,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:math';
 
 import 'game.dart';
 import 'logicholder.dart';
@@ -50,41 +49,47 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff1d1d1),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: AutoSizeText(
-                  "Color Game",
-                  style: TextStyle(color: Color(0xff7d5a5a), fontSize: 150),
-                  maxLines: 1,
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/game.jpg"),
+                fit: BoxFit.cover)),
+
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: AutoSizeText(
+                    "Color Game",
+                    style: TextStyle(color: Color(0xff7d5a5a), fontSize: 150),
+                    maxLines: 1,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: MaterialButton(
-                textTheme: ButtonTextTheme.normal,
-                onPressed: () {
-                  Navigator.pushNamed(context, '/Second');
-                },
-                child: Text(
-                  "Start",
-                  style: TextStyle(fontSize: 20),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: MaterialButton(
+                  textTheme: ButtonTextTheme.normal,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Second');
+                  },
+                  child: Text(
+                    "Start",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  color: Color(0xff7d5a5a),
+                  disabledTextColor: Colors.white,
+                  textColor: Colors.white,
+                  padding: EdgeInsets.all(10),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
                 ),
-                color: Color(0xff7d5a5a),
-                disabledTextColor: Colors.white,
-                textColor: Colors.white,
-                padding: EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

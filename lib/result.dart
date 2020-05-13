@@ -11,9 +11,13 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff1d1d1),
-      body: Center(
-        child: ResultLayout(),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/game.jpg"), fit: BoxFit.cover)),
+        child: Center(
+          child: ResultLayout(),
+        ),
       ),
     );
   }
@@ -22,42 +26,40 @@ class _ResultPageState extends State<ResultPage> {
 class ResultLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              AutoSizeText("Game Over",
-                  style: TextStyle(color: Color(0xff7d5a5a), fontSize: 150),
-                  maxLines: 1),
-              AutoSizeText(
-                'score : ${Provider.of<GameChangeNotifier>(context).score}',
-                style: TextStyle(color: Color(0xff7d5a5a), fontSize: 80),
-                maxLines: 1,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: MaterialButton(
-                  textTheme: ButtonTextTheme.normal,
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/First');
-                    Provider.of<GameChangeNotifier>(context).resetAllValue();
-                  },
-                  child: Text(
-                    "Try again",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  color: Color(0xff7d5a5a),
-                  disabledTextColor: Colors.white,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            AutoSizeText("Game Over",
+                style: TextStyle(color: Color(0xff7d5a5a), fontSize: 100),
+                maxLines: 1),
+            AutoSizeText(
+              'score : ${Provider.of<GameChangeNotifier>(context).score}',
+              style: TextStyle(color: Color(0xff7d5a5a), fontSize: 50),
+              maxLines: 1,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: MaterialButton(
+                textTheme: ButtonTextTheme.normal,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/First');
+                  Provider.of<GameChangeNotifier>(context).resetAllValue();
+                },
+                child: Text(
+                  "Try again",
+                  style: TextStyle(fontSize: 20),
                 ),
+                color: Color(0xff7d5a5a),
+                disabledTextColor: Colors.white,
+                textColor: Colors.white,
+                padding: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
               ),
-            ]),
-      ),
+            ),
+          ]),
     );
   }
 }

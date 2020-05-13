@@ -13,61 +13,59 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff1d1d1),
-      body: Center(
-        child: SizedBox(
-          height: min(MediaQuery.of(context).size.height,
-              MediaQuery.of(context).size.width),
-          width: min(MediaQuery.of(context).size.height,
-              MediaQuery.of(context).size.width),
-          child: FittedBox(
-            fit: BoxFit.fill,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Center(
-                child: SizedBox(
-                  width: 250,
-                  height: 250,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Countdown(
-                        duration: Duration(seconds: 60),
-                        onFinish: () {
-                          Navigator.pushNamed(context, '/Third');
-                        },
-                        builder: (BuildContext ctx, Duration remaining) {
-                          return Text(
-                            '${remaining.inSeconds}',
-                            style: TextStyle(
-                                color: Color(0xff7d5a5a), fontSize: 50),
-
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'Level : ${Provider
-                                  .of<GameChangeNotifier>(context)
-                                  .gameLevel}',
-                              style:
-                              TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
-                            ),
-                            Text(
-                              ', Score : ${Provider
-                                  .of<GameChangeNotifier>(context)
-                                  .score}',
-                              style:
-                              TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
-                            ),
-                          ],
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/game.jpg"), fit: BoxFit.cover)),
+        child: Center(
+          child: SizedBox(
+            height: min(MediaQuery.of(context).size.height,
+                MediaQuery.of(context).size.width),
+            width: min(MediaQuery.of(context).size.height,
+                MediaQuery.of(context).size.width),
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Center(
+                  child: SizedBox(
+                    width: 250,
+                    height: 250,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Countdown(
+                          duration: Duration(seconds: 60),
+                          onFinish: () {
+                            Navigator.pushNamed(context, '/Third');
+                          },
+                          builder: (BuildContext ctx, Duration remaining) {
+                            return Text(
+                              '${remaining.inSeconds}',
+                              style: TextStyle(
+                                  color: Color(0xff7d5a5a), fontSize: 50),
+                            );
+                          },
                         ),
-                      ),
-                      Expanded(child: FittedBox(child: GameBoard())),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Level : ${Provider.of<GameChangeNotifier>(context).gameLevel}',
+                                style: TextStyle(
+                                    color: Color(0xff7d5a5a), fontSize: 20),
+                              ),
+                              Text(
+                                ', Score : ${Provider.of<GameChangeNotifier>(context).score}',
+                                style: TextStyle(
+                                    color: Color(0xff7d5a5a), fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(child: FittedBox(child: GameBoard())),
 //                      Padding(
 //                        padding: const EdgeInsets.all(20),
 //                        child: MaterialButton(
@@ -87,7 +85,8 @@ class _GamePageState extends State<GamePage> {
 //                              borderRadius: BorderRadius.circular(20)),
 //                        ),
 //                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -107,11 +106,10 @@ class GameBoard extends StatelessWidget {
     final game = Provider.of<GameChangeNotifier>(context);
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.white,width: 5),
+          border: Border.all(color: Colors.white, width: 5),
           color: Colors.white,
           // 设置圆角
-          borderRadius: BorderRadius.all(Radius.circular(12.0))
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(12.0))),
       child: Column(
         children: <Widget>[
           for (var j = 0; j < game.boardSize; j++)
