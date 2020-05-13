@@ -55,8 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              width: (MediaQuery.of(context).size.width) * 0.9,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: AutoSizeText(
                   "Color Game",

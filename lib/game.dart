@@ -38,21 +38,34 @@ class _GamePageState extends State<GamePage> {
                         },
                         builder: (BuildContext ctx, Duration remaining) {
                           return Text(
-                            '${remaining.inMinutes}:${remaining.inSeconds}',
+                            '${remaining.inSeconds}',
                             style: TextStyle(
-                                color: Color(0xff7d5a5a), fontSize: 20),
+                                color: Color(0xff7d5a5a), fontSize: 50),
+
                           );
                         },
                       ),
-                      Text(
-                        'level=${Provider.of<GameChangeNotifier>(context).gameLevel}',
-                        style:
-                            TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
-                      ),
-                      Text(
-                        'score = ${Provider.of<GameChangeNotifier>(context).score}',
-                        style:
-                            TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Level : ${Provider
+                                  .of<GameChangeNotifier>(context)
+                                  .gameLevel}',
+                              style:
+                              TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
+                            ),
+                            Text(
+                              ', Score : ${Provider
+                                  .of<GameChangeNotifier>(context)
+                                  .score}',
+                              style:
+                              TextStyle(color: Color(0xff7d5a5a), fontSize: 20),
+                            ),
+                          ],
+                        ),
                       ),
                       Expanded(child: FittedBox(child: GameBoard())),
 //                      Padding(
@@ -93,6 +106,12 @@ class GameBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     final game = Provider.of<GameChangeNotifier>(context);
     return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.white,width: 5),
+          color: Colors.white,
+          // 设置圆角
+          borderRadius: BorderRadius.all(Radius.circular(12.0))
+      ),
       child: Column(
         children: <Widget>[
           for (var j = 0; j < game.boardSize; j++)
