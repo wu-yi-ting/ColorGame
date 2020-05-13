@@ -45,7 +45,7 @@ class ResultLayout extends StatelessWidget {
                     Provider.of<GameChangeNotifier>(context).resetAllValue();
                   },
                   child: Text(
-                    "回首頁",
+                    "Try again",
                     style: TextStyle(fontSize: 20),
                   ),
                   color: Color(0xff7d5a5a),

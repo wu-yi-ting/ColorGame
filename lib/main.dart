@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/Second');
                 },
                 child: Text(
-                  "開始吧",
+                  "Start",
                   style: TextStyle(fontSize: 20),
                 ),
                 color: Color(0xff7d5a5a),
