@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: (MediaQuery.of(context).size.width) * 0.8,
+              width: (MediaQuery.of(context).size.width) * 0.9,
               child: Center(
                 child: AutoSizeText(
                   "Color Game",
