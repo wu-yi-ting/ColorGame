@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
@@ -53,9 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "Color Game",
-              style: TextStyle(color: Color(0xff7d5a5a), fontSize: 70),
+            Container(
+              width: (MediaQuery.of(context).size.width) * 0.8,
+              child: Center(
+                child: AutoSizeText(
+                  "Color Game",
+                  style: TextStyle(color: Color(0xff7d5a5a), fontSize: 150),
+                  maxLines: 1,
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20),
