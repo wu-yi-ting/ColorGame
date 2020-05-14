@@ -1,4 +1,4 @@
-# bellatest
+# ColorGame
 
 A new Flutter application.
 
